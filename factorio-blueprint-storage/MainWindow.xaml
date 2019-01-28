@@ -1,12 +1,42 @@
-﻿<Window x:Class="factorio_blueprint_storage.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:factorio_blueprint_storage"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
-</Window>
+﻿<Controls:MetroWindow x:Class="factorio_blueprint_storage.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"        
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:factorio_blueprint_storage"
+                      mc:Ignorable="d"
+                      Title="[Factorio] BP Storage" Height="600" Width="450"
+                      MinHeight="300" MinWidth="450"
+                      AllowsTransparency="True"
+                      ResizeMode="CanResizeWithGrip"
+                      WindowStartupLocation="CenterScreen">
+
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Content=" Topmost" Click="TopmostWin" />
+            <Slider Name="OpacityWindowsSlider" Value="100" ValueChanged="OpacityWindowsSlider_ValueChanged" 
+                    Maximum="100" Minimum="5" Margin="5,0" Width="50"
+                    HorizontalAlignment="Right" />
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
+
+    <DockPanel x:Name="RootWindow">
+        <Grid DockPanel.Dock="Top">
+            <Menu DockPanel.Dock="Top" Height="auto" Background="#d9dee2">
+                <MenuItem Header="Add Item" Click="AddNewItemBtn" Margin="5"/>
+                <MenuItem Header="Update" Click="UpdateDataList" Margin="5"/>
+                <MenuItem Header="View" Margin="5">
+                    <MenuItem x:Name="bView" Header="Modal View" Click="ViewChanged" IsChecked="True"/>
+                    <MenuItem x:Name="tView" Header="Tree VIew"  Click="ViewChanged"/>
+                </MenuItem>
+                <MenuItem Header="Collection mode" Click="CollectionState" Margin="5"/>
+            </Menu>
+        </Grid>
+        <ScrollViewer x:Name="PageContent" Margin="0,10,0,0">
+            <Image Source="img/pre/default.jpg" Width="100" Height="100"/>
+        </ScrollViewer>
+        <!--<Page x:Name="ListOfPrints" DockPanel.Dock="Bottom"/>-->
+    </DockPanel>
+</Controls:MetroWindow>
