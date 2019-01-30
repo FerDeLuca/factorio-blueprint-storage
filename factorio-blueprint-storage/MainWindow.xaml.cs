@@ -14,8 +14,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 
+
 namespace factorio_blueprint_storage
 {
+    
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -28,12 +30,12 @@ namespace factorio_blueprint_storage
             InitializeComponent();
         }
 
-        private void UpdateDataList(object sender, RoutedEventArgs e)
+        void UpdateDataList(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void OpacityWindowsChecking(object sender, RoutedEventArgs e)
+        void OpacityWindowsChecking(object sender, RoutedEventArgs e)
         {
             if (((MenuItem)sender).IsChecked)
             {
@@ -44,33 +46,16 @@ namespace factorio_blueprint_storage
             else
             {
                 OpacityWindowsSlider.IsEnabled = false;
-                //OpacityWindowsSlider.Visibility = Visibility.Hidden;
                 this.Opacity = 1;
             }
         }
 
-        private void OpacityWindowsSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        void OpacityWindowsSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             this.Opacity = ((Slider)sender).Value/100;
         }
 
-
-        private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-                if (e.ClickCount != 2)
-                    Application.Current.MainWindow.DragMove();
-        }
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-
-        private void TopmostWin(object sender, RoutedEventArgs e)
+        void TopmostWin(object sender, RoutedEventArgs e)
         {
             if (((Button)sender).Content.ToString().StartsWith(" "))
             {
@@ -84,7 +69,7 @@ namespace factorio_blueprint_storage
             }
         }
 
-        private void ViewChanged(object sender, RoutedEventArgs e)
+        void ViewChanged(object sender, RoutedEventArgs e)
         {
             if (((MenuItem)sender).Header.ToString().Contains("Блочный"))
             {
@@ -100,16 +85,13 @@ namespace factorio_blueprint_storage
             }
 
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="typeRender">false-Blocks,true-Tree</param>
-        void RenderingPage(bool typeRender)
+
+        void RenderingPage(bool Type)
         {
 
         }
 
-        private void CollectionState(object sender, RoutedEventArgs e)
+        void CollectionState(object sender, RoutedEventArgs e)
         {
             bCollectionEnable = !bCollectionEnable;
             if (bCollectionEnable)
@@ -118,20 +100,18 @@ namespace factorio_blueprint_storage
                 ((MenuItem)sender).Background = new SolidColorBrush(Color.FromRgb(0xff, 0xff, 0xff));
         }
 
-        private void AddNewItemBtn(object sender, RoutedEventArgs e)
+        void AddNewItemBtn(object sender, RoutedEventArgs e)
         {
-            BPObject addItemBP;
-            NewItem newItem = new NewItem();
-            newItem.Owner = Window.GetWindow(this);
+            MainService.BPObject addItemBP;
+            NewItem newItem = new NewItem
+            {
+                Owner = Window.GetWindow(this)
+            };
             newItem.ShowDialog();
-            addItemBP = newItem.newBP;
+            addItemBP = newItem.newBp;
             newItem.Close();
-
-
         }
     }
-    public struct BPObject
-    {
-        public string name;
-    }
+
+   
 }
