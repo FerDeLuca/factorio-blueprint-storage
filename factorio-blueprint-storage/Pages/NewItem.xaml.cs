@@ -27,48 +27,48 @@ namespace factorio_blueprint_storage
         public NewItem()
         {
             InitializeComponent();
-            ClearForm();
+            FormCleaner();
         }
 
         private void SaveResult(object sender, RoutedEventArgs e)
         {
             //TODO Parsing grid and save data
             int nextID = 1; //TODO Считывание нового ID
-            MessageBoxResult boxButton = MessageBoxResult.Yes;
-            if (newBp.id != nextID)
-                boxButton = MessageBox.Show("Field ID incorrectly! Continue save?(Your [ID] may vary)",
-                "Information Message", MessageBoxButton.YesNoCancel);
-            switch (boxButton)
+                            /*
+                            if (newBp.id != MainService.NewID)
+                                boxButton = MessageBox.Show("Field ID incorrectly! Continue save?(Your [ID] may vary)",
+                                "Information Message", MessageBoxButton.YesNoCancel);
+                            else
+                                boxButton= boxButton = MessageBoxResult.Yes;*/
+
+            if (newBp.id != MainService.NewID)
             {
-                case MessageBoxResult.Yes:
-                    //public string name;
-                    newBp.name = formName.Text;
-                    //public DateTime updateDate;
-                    newBp.updateDate = DateTime.Now;
-                    //public string description;
-                    newBp.description = formDesc.Text;
-                    //public string imgLink;
-                    if (newBp.imgLink != null)
-                    {//TODO не работает копирование
-                        File.Copy(newBp.imgLink, @"\\img\\" + nextID + System.IO.Path.GetExtension(newBp.imgLink));
-                        newBp.imgLink = nextID + System.IO.Path.GetExtension(newBp.imgLink);
-                    }
-                    else
-                    {
-                        newBp.imgLink = "default.jpg";
-                    }
-                    //public string code;
-                    newBp.code = formCode.Text;
-                    //public Stack<int> tags;
-                    newBp.tags = new Stack<int> { };
-                    //Close Window
-                    break;
-                case MessageBoxResult.No:
-                    return;
-                case MessageBoxResult.Cancel:
-                    break;
+                //public string name;
+                newBp.name = formName.Text;
+                //public DateTime updateDate;
+                newBp.updateDate = DateTime.Now;
+                //public string description;
+                newBp.description = formDesc.Text;
+                //public string imgLink;
+                if (newBp.imgLink != null)
+                {
+                    Directory.CreateDirectory("img");// \pre - для миниатюр
+                    File.Copy(newBp.imgLink, @"img\" + nextID + System.IO.Path.GetExtension(newBp.imgLink), true);
+                    newBp.imgLink = nextID + System.IO.Path.GetExtension(newBp.imgLink);
+                }
+                //public string code;
+                newBp.code = formCode.Text;
+                //public Stack<int> tags;
+                newBp.tags = new Stack<int> { };
+                //Close Window
+                Hide();
             }
-            Hide();
+            else
+            {
+                formId.Text = MainService.NewID.ToString("0000");
+                MessageBox.Show("BP identy update! Please check id and click again.");
+            }
+               
         }
 
         private void CancelAndClose(object sender, RoutedEventArgs e)
@@ -77,10 +77,10 @@ namespace factorio_blueprint_storage
             Close();
         }
 
-        private void ClearForm(object sender=null, RoutedEventArgs e=null)
+        private void FormCleaner(object sender=null, RoutedEventArgs e=null)
         {
             //Update fields
-            formId.Text = newBp.GetNewID().ToString("0000");
+            formId.Text = MainService.NewID.ToString("0000");
             formName.Text = null;
             formDesc.Text = null;
             formCode.Text = null;
@@ -133,9 +133,7 @@ namespace factorio_blueprint_storage
             {
                 newBp.imgLink = newPic.FileName;
                 formSetImg.Source = new BitmapImage(new Uri(newPic.FileName));
-            }
-                
-
+            }        
         }
     }
 }

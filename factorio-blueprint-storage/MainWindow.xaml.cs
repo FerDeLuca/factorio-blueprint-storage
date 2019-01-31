@@ -110,6 +110,9 @@ namespace factorio_blueprint_storage
             newItem.ShowDialog();
             addItemBP = newItem.newBp;
             newItem.Close();
+
+            if(addItemBP.code != null && addItemBP.code.Length>10)
+                MainService.AddBlueprintObj(addItemBP);
         }
     }
 

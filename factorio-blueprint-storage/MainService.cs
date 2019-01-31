@@ -15,12 +15,15 @@ namespace factorio_blueprint_storage
             public string imgLink;
             public string code;
             public Stack<int> tags;
+        }
 
-            public int GetNewID()
-            {
-                //СДЕЛАТЬ ЗАПРОС К БД
-                return 1;
-            }
+        public static int NewID =>
+            //СДЕЛАТЬ ЗАПРОС нового ID К БД
+            1;
+
+        internal static void AddBlueprintObj(BPObject addItemBP)
+        {
+            //TODO Добавление строки в базу
         }
     }
 }

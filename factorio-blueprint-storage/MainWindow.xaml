@@ -6,7 +6,8 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:local="clr-namespace:factorio_blueprint_storage"
                       mc:Ignorable="d"
-                      Title="[Factorio] BP Storage" Height="600" Width="450"
+                      Title="[Factorio] BP Storage" 
+                      Height="600" Width="450"
                       MinHeight="300" MinWidth="450"
                       AllowsTransparency="True"
                       ResizeMode="CanResizeWithGrip"
@@ -35,7 +36,7 @@
             </Menu>
         </Grid>
         <ScrollViewer x:Name="PageContent" Margin="0,10,0,0">
-            <Image Source="img/pre/default.jpg" Width="100" Height="100"/>
+            <StackPanel x:Name="BlueprintStack"/>
         </ScrollViewer>
         <!--<Page x:Name="ListOfPrints" DockPanel.Dock="Bottom"/>-->
     </DockPanel>

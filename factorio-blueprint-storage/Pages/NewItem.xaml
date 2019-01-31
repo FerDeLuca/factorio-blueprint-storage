@@ -14,7 +14,7 @@
                       WindowStartupLocation="CenterScreen">
 
 
-    <Grid Background="#EEE">
+    <Grid Background="#f1f2f4">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition MinHeight="120"/>
@@ -34,11 +34,11 @@
         <DockPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Height="30">
             <TextBox x:Name="formId" Text="000" IsEnabled="False" DockPanel.Dock="Left" 
                      FontSize="16" FontFamily="Verdana"
-                     Width="50" Background="#cccbcb" 
+                     Width="50" Background="#d3d9de" 
                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <TextBox x:Name="fromTime" Text="dd/MM/yyyy hh:mm" IsEnabled="False" DockPanel.Dock="Right"
                      Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"
-                     FontSize="16" FontFamily="Verdana" Background="#cccbcb"
+                     FontSize="16" FontFamily="Verdana" Background="#d3d9de"
                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <TextBox x:Name="formName" Tag="Blueprint name" DockPanel.Dock="Right"
                      FontSize="16" FontFamily="Verdana" Margin="10,0"
@@ -58,9 +58,38 @@
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
         <!--Tags field-->
-        <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
+        <UniformGrid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"
+                    x:Name="StackTags">
+            <Button Content="Button" Margin="5" IsEnabled="True" ClickMode="Hover"
+                    Height="24" Width="100"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                    />
+            <Button Content="Button" Margin="5" IsEnabled="True" ClickMode="Hover"
+                    Height="24" Width="100"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                    />
+            <Button Content="Button" Margin="5" IsEnabled="True" ClickMode="Hover"
+                    Height="24" Width="100"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                    />
+            <Button Content="Button" Margin="5" IsEnabled="True" ClickMode="Hover"
+                    Height="24" Width="100"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                    />
+            <Button Content="Button" Margin="5" IsEnabled="True" ClickMode="Hover"
+                    Height="24" Width="100"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                    />
+            <Button Content="Button" Margin="5" IsEnabled="True" ClickMode="Hover"
+                    Height="24" Width="100"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                    />
+            <Button Content="Button" Margin="5" IsEnabled="True" ClickMode="Hover"
+                    Height="24" Width="100"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                    />
 
-        </Border>
+        </UniformGrid>
 
         <GridSplitter ShowsPreview="False" Background="WhiteSmoke"
                       BorderBrush="#BBB" BorderThickness="1"
@@ -70,10 +99,11 @@
             <TextBox  x:Name="formCode" Tag="Enter blueprint code in this field."
                       Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3"
                       TextWrapping="Wrap"  AcceptsReturn="True"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True"/>
+                      ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True"
+                      GotFocus="TextBox_MouseEnter" LostFocus="TextBox_MouseLeave"/>
 
             <!--Footer-->
-        <Button Click="ClearForm" Grid.Row="8" Grid.Column="1" 
+        <Button Click="FormCleaner" Grid.Row="8" Grid.Column="1" 
                 Content="Clear Form" HorizontalAlignment="Left" Margin="25,10"/>
         <Button Click="SaveResult" Grid.Row="8" Grid.Column="2" 
                 Content="Save BluePrint" Margin="5,10"/>
